@@ -202,17 +202,21 @@ let playing = false;
 
 function playAudio() {
   audio.currentTime = 32;
-  audio.muted = true;
   const playPromise = audio.play();
   if (playPromise !== undefined) {
     playPromise.then(() => {
-      audio.muted = false;
       playing = true;
       musicBtn.textContent = '❚❚';
     }).catch(err => {
-      console.log('Autoplay bloqueado:', err);
+      console.log('Error reproduciendo audio:', err);
     });
   }
+}
+
+function unmuteAudio() {
+  if (!audio.muted) return;
+  audio.muted = false;
+  if (playing) musicBtn.textContent = '❚❚';
 }
 
 musicBtn.addEventListener('click', () => {
@@ -221,8 +225,14 @@ musicBtn.addEventListener('click', () => {
     playing = false;
     musicBtn.textContent = '♪';
   } else {
+    unmuteAudio();
     playAudio();
   }
+});
+
+// Unmutear con la primera interacción del usuario
+['click', 'touchstart', 'scroll'].forEach(event => {
+  document.addEventListener(event, unmuteAudio, { once: true });
 });
 
 window.playAudio = playAudio;
