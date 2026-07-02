@@ -1,0 +1,14 @@
+# Local environment
+.claude/
+.env
+.env.local
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dependencies
+node_modules/
