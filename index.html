@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación - Baby Shower Matías</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes:wght@400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #E0F6FF 0%, #FFF9E6 100%);
+        }
+
+        /* LOADER INICIAL */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #87CEEB 0%, #E0F6FF 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 2000;
+            animation: fadeOutLoader 0.8s ease-out 2.5s forwards;
+        }
+
+        @keyframes fadeOutLoader {
+            from {
+                opacity: 1;
+                visibility: visible;
+            }
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .loader-content {
+            text-align: center;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loader-icon {
+            font-size: 120px;
+            margin-bottom: 30px;
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            0%, 100% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(360deg) scale(1.1);
+            }
+        }
+
+        .loader-text {
+            font-size: 24px;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .loader-dots {
+            font-size: 18px;
+            letter-spacing: 2px;
+            animation: dots 1.5s infinite;
+            display: inline-block;
+            width: 20px;
+            text-align: left;
+        }
+
+        @keyframes dots {
+            0% { content: '.'; }
+            33% { content: '..'; }
+            66% { content: '...'; }
+            100% { content: ''; }
+        }
+
+        /* PANTALLA DE APERTURA */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #87CEEB 0%, #B3E5FC 50%, #E0F6FF 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 1000;
+            animation: fadeOutSplash 0.8s ease-out 3.2s forwards;
+            overflow: hidden;
+        }
+
+        @keyframes fadeOutSplash {
+            from {
+                opacity: 1;
+                visibility: visible;
+            }
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* GLOBOS FLOTANTES */
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 50px;
+            height: 60px;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            opacity: 0.7;
+            animation: float-balloon linear infinite;
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: rgba(0, 0, 0, 0.1);
+            left: 24px;
+            top: 60px;
+        }
+
+        .balloon-1 { background: #FFB6C1; left: 10%; animation-duration: 6s; animation-delay: 0s; }
+        .balloon-2 { background: #FFD700; left: 30%; animation-duration: 7s; animation-delay: 1s; }
+        .balloon-3 { background: #87CEEB; left: 50%; animation-duration: 8s; animation-delay: 0.5s; }
+        .balloon-4 { background: #FFB6C1; left: 70%; animation-duration: 7.5s; animation-delay: 1.5s; }
+        .balloon-5 { background: #FFD700; left: 85%; animation-duration: 6.5s; animation-delay: 1s; }
+
+        @keyframes float-balloon {
+            0% {
+                bottom: -100px;
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                bottom: 110vh;
+                opacity: 0;
+                transform: rotate(-45deg) translateX(50px);
+            }
+        }
+
+        .splash-content {
+            text-align: center;
+            z-index: 10;
+            animation: slideInSplash 1s ease-out;
+        }
+
+        @keyframes slideInSplash {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .splash-icons {
+            font-size: 60px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            animation: bounceIcons 2s infinite;
+        }
+
+        @keyframes bounceIcons {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .splash-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 56px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            animation: fadeInText 1.2s ease-out 0.3s both;
+        }
+
+        .splash-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            font-weight: 300;
+            animation: fadeInText 1.2s ease-out 0.6s both;
+        }
+
+        .splash-emoji {
+            font-size: 80px;
+            animation: bounceEmoji 1.5s infinite;
+        }
+
+        @keyframes bounceEmoji {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-30px) scale(1.1);
+            }
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* INVITACIÓN PRINCIPAL */
+        .invitation {
+            opacity: 0;
+            transition: opacity 0.8s ease-in;
+            min-height: 100vh;
+        }
+
+        .invitation.show {
+            opacity: 1;
+        }
+
+        /* ENCABEZADO */
+        .header-section {
+            background: linear-gradient(180deg, #87CEEB 0%, #5A9FB5 100%);
+            padding: 50px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-decorations {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .deco-icon {
+            position: absolute;
+            opacity: 0.15;
+            font-size: 80px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .deco-1 { top: 10px; right: 20px; animation-duration: 6s; }
+        .deco-2 { bottom: 20px; left: 30px; animation-duration: 8s; }
+        .deco-3 { top: 50%; right: 10%; animation-duration: 7s; }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(30px);
+            }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 5;
+            animation: slideInDown 0.8s ease-out 3.5s both;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-icons {
+            font-size: 50px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            animation: bounceIn 0.8s ease-out 3.7s both;
+        }
+
+        @keyframes bounceIn {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .header-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 64px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+            animation: slideInDown 0.8s ease-out 3.8s both;
+        }
+
+        .header-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 300;
+            letter-spacing: 1px;
+            animation: slideInDown 0.8s ease-out 3.9s both;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .main-container {
+            max-width: 700px;
+            margin: -50px auto 40px;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out 4s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .invitation-content {
+            padding: 45px 35px;
+        }
+
+        /* MENSAJE ESPECIAL */
+        .special-message {
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.1), rgba(255, 215, 0, 0.1));
+            padding: 30px;
+            border-radius: 18px;
+            margin-bottom: 35px;
+            border-left: 5px solid #87CEEB;
+            animation: slideInLeft 0.8s ease-out 4.1s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .special-message p {
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: 500;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .special-message span {
+            color: #87CEEB;
+            font-weight: 700;
+        }
+
+        /* SECCIÓN DE PADRES Y BEBÉ */
+        .baby-section {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            border-bottom: 2px solid #f0f0f0;
+            animation: slideInUp 0.8s ease-out 4.2s both;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .baby-label {
+            font-size: 12px;
+            color: #87CEEB;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .parents-names {
+            font-size: 20px;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .baby-icon {
+            font-size: 70px;
+            margin: 15px 0;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .baby-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 56px;
+            color: #87CEEB;
+            font-weight: 700;
+            margin: 10px 0 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .parents-image {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: slideInUp 0.8s ease-out 4.2s both;
+            display: block;
+        }
+
+        .baby-image {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            margin: 20px 0 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: slideInUp 0.8s ease-out 4.2s both;
+            display: block;
+        }
+
+        /* DETALLES DEL EVENTO */
+        .event-details {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 35px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+            animation: slideInRight 0.8s ease-out 4.3s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-item:hover {
+            transform: translateX(10px);
+        }
+
+        .detail-icon {
+            font-size: 32px;
+            margin-right: 18px;
+            min-width: 45px;
+            display: flex;
+            align-items: center;
+        }
+
+        .detail-text {
+            flex: 1;
+        }
+
+        .detail-label {
+            font-size: 11px;
+            color: #87CEEB;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .detail-value {
+            font-size: 17px;
+            color: #2c3e50;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            color: #FFD700;
+            font-weight: 700;
+        }
+
+        /* NOTA ESPECIAL */
+        .special-note {
+            background: linear-gradient(135deg, #FFD700 0%, #FFE680 100%);
+            padding: 25px;
+            border-radius: 18px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+            }
+        }
+
+        .special-note p {
+            font-size: 16px;
+            color: #8B6914;
+            font-weight: 700;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .special-note span {
+            display: inline-block;
+            font-size: 28px;
+            margin: 0 10px;
+        }
+
+        /* CONTADOR REGRESIVO */
+        .countdown-section {
+            background: linear-gradient(135deg, #87CEEB 0%, #5A9FB5 100%);
+            padding: 30px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+            animation: slideInUp 0.8s ease-out 4.4s both;
+        }
+
+        .countdown-title {
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 22px;
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(10px);
+            padding: 16px 12px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.3s ease;
+            min-width: 80px;
+            flex-shrink: 0;
+        }
+
+        .countdown-item:hover {
+            background: rgba(255, 255, 255, 0.28);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .countdown-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: #FFD700;
+            display: block;
+            line-height: 1;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .countdown-value.pulse {
+            animation: pulseNumber 0.6s ease-out;
+        }
+
+        @keyframes pulseNumber {
+            0% {
+                transform: scale(1.3);
+                color: #FFFFFF;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+                color: #FFD700;
+            }
+        }
+
+        .countdown-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .countdown-separator {
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+            flex-shrink: 0;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* UBICACIÓN EN MAPA */
+        .location-card {
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.1), rgba(255, 215, 0, 0.05));
+            padding: 30px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(135, 206, 235, 0.3);
+            animation: slideInUp 0.8s ease-out 4.5s both;
+        }
+
+        .location-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .location-icon {
+            font-size: 48px;
+            flex-shrink: 0;
+        }
+
+        .location-info {
+            flex: 1;
+        }
+
+        .location-label {
+            font-size: 12px;
+            color: #87CEEB;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            margin: 0 0 10px 0;
+        }
+
+        .location-address {
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 600;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .map-button {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #87CEEB 0%, #5A9FB5 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(135, 206, 235, 0.3);
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .map-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.45);
+        }
+
+        .map-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* BOTONES */
+        .button-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            animation: slideInUp 0.8s ease-out 4.6s both;
+        }
+
+        .whatsapp-btn {
+            flex: 1;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #25D366 0%, #20BA58 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.45);
+        }
+
+        .whatsapp-btn:active {
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-btn-mom {
+            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%) !important;
+            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.3) !important;
+        }
+
+        .whatsapp-btn-mom:hover {
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.45) !important;
+        }
+
+        /* MENSAJE DE CIERRE */
+        .footer-message {
+            text-align: center;
+            font-size: 15px;
+            color: #7f8c8d;
+            padding: 25px 20px;
+            border-top: 2px solid #f0f0f0;
+            animation: slideInUp 0.8s ease-out 4.7s both;
+        }
+
+        .footer-message p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .footer-emoji {
+            display: inline-block;
+            margin: 0 5px;
+            animation: heartBeat 1.3s infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* RESPONSIVO - TABLETS Y DESKTOP */
+        @media (max-width: 1024px) {
+            .splash-title {
+                font-size: 48px;
+            }
+
+            .header-title {
+                font-size: 52px;
+            }
+
+            .main-container {
+                max-width: 650px;
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+        }
+
+        /* RESPONSIVO - TABLETS */
+        @media (max-width: 768px) {
+            .splash-title {
+                font-size: 42px;
+            }
+
+            .header-title {
+                font-size: 44px;
+            }
+
+            .header-section {
+                padding: 40px 20px 60px;
+            }
+
+            .main-container {
+                max-width: 100%;
+                margin-left: 15px;
+                margin-right: 15px;
+                margin-top: -40px;
+            }
+
+            .invitation-content {
+                padding: 25px 20px;
+            }
+
+            .baby-name {
+                font-size: 38px;
+            }
+
+            .header-icons {
+                font-size: 40px;
+                gap: 18px;
+            }
+
+            .parents-names {
+                font-size: 18px;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            .whatsapp-btn {
+                font-size: 14px;
+                padding: 14px 20px;
+            }
+
+            .special-message p {
+                font-size: 16px;
+            }
+
+            .detail-value {
+                font-size: 15px;
+            }
+
+            .parents-image {
+                max-width: 240px;
+            }
+
+            .baby-image {
+                max-width: 220px;
+            }
+
+            .location-address {
+                font-size: 15px;
+            }
+        }
+
+        /* RESPONSIVO - MÓVILES GRANDES (480-768px) */
+        @media (max-width: 600px) {
+            .splash-title {
+                font-size: 36px;
+            }
+
+            .loader-text {
+                font-size: 18px;
+            }
+
+            .loader-icon {
+                font-size: 90px;
+            }
+
+            .header-title {
+                font-size: 38px;
+            }
+
+            .header-icons {
+                font-size: 36px;
+                gap: 15px;
+            }
+
+            .baby-name {
+                font-size: 36px;
+            }
+
+            .baby-icon {
+                font-size: 60px;
+            }
+
+            .parents-names {
+                font-size: 17px;
+            }
+
+            .baby-label {
+                font-size: 11px;
+            }
+
+            .special-message p {
+                font-size: 15px;
+            }
+
+            .countdown-title {
+                font-size: 13px;
+            }
+
+            .countdown-value {
+                font-size: 26px;
+            }
+
+            .countdown-label {
+                font-size: 9px;
+            }
+
+            .detail-value {
+                font-size: 15px;
+            }
+
+            .detail-icon {
+                font-size: 28px;
+            }
+
+            .whatsapp-btn {
+                font-size: 14px;
+                padding: 14px 18px;
+                gap: 8px;
+            }
+
+            .parents-image {
+                max-width: 220px;
+            }
+
+            .baby-image {
+                max-width: 200px;
+            }
+
+            .location-icon {
+                font-size: 40px;
+            }
+
+            .location-address {
+                font-size: 14px;
+            }
+
+            .map-button {
+                font-size: 14px;
+                padding: 14px 20px;
+            }
+
+            .invitation-content {
+                padding: 22px 18px;
+            }
+        }
+
+        /* RESPONSIVO - MÓVILES MEDIANOS (360-480px) */
+        @media (max-width: 480px) {
+            .splash-title {
+                font-size: 32px;
+            }
+
+            .loader-text {
+                font-size: 16px;
+            }
+
+            .loader-icon {
+                font-size: 80px;
+            }
+
+            .header-title {
+                font-size: 34px;
+            }
+
+            .header-section {
+                padding: 35px 15px 50px;
+            }
+
+            .header-icons {
+                font-size: 32px;
+                gap: 12px;
+            }
+
+            .baby-name {
+                font-size: 32px;
+            }
+
+            .baby-icon {
+                font-size: 55px;
+            }
+
+            .parents-names {
+                font-size: 16px;
+            }
+
+            .baby-label {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+
+            .special-message {
+                padding: 20px;
+            }
+
+            .special-message p {
+                font-size: 14px;
+            }
+
+            .countdown-title {
+                font-size: 12px;
+                margin-bottom: 15px;
+            }
+
+            .countdown-container {
+                gap: 5px;
+                padding: 0 2px;
+                overflow-x: auto;
+            }
+
+            .countdown-item {
+                padding: 12px 6px;
+                border-radius: 9px;
+                min-width: 65px;
+            }
+
+            .countdown-value {
+                font-size: 20px;
+                margin-bottom: 3px;
+            }
+
+            .countdown-label {
+                font-size: 7.5px;
+                letter-spacing: 0px;
+            }
+
+            .countdown-separator {
+                font-size: 16px;
+                flex-shrink: 0;
+            }
+
+            .event-details {
+                padding: 20px;
+            }
+
+            .detail-item {
+                margin-bottom: 15px;
+            }
+
+            .detail-icon {
+                font-size: 26px;
+                min-width: 35px;
+                margin-right: 12px;
+            }
+
+            .detail-label {
+                font-size: 10px;
+            }
+
+            .detail-value {
+                font-size: 14px;
+            }
+
+            .special-note {
+                padding: 18px;
+            }
+
+            .special-note p {
+                font-size: 14px;
+            }
+
+            .special-note span {
+                font-size: 24px;
+            }
+
+            .whatsapp-btn {
+                font-size: 12px;
+                padding: 12px 14px;
+                gap: 6px;
+                border-radius: 10px;
+            }
+
+            .whatsapp-btn span:first-child {
+                font-size: 16px;
+            }
+
+            .parents-image {
+                max-width: 180px;
+            }
+
+            .baby-image {
+                max-width: 160px;
+            }
+
+            .location-card {
+                padding: 20px;
+            }
+
+            .location-icon {
+                font-size: 36px;
+            }
+
+            .location-info {
+                gap: 15px;
+            }
+
+            .location-label {
+                font-size: 10px;
+                margin-bottom: 6px;
+            }
+
+            .location-address {
+                font-size: 13px;
+                line-height: 1.5;
+            }
+
+            .map-button {
+                font-size: 12px;
+                padding: 12px 16px;
+                gap: 8px;
+            }
+
+            .footer-message {
+                font-size: 13px;
+                padding: 15px;
+            }
+
+            .invitation-content {
+                padding: 20px 12px;
+            }
+
+            .main-container {
+                margin-left: 10px;
+                margin-right: 10px;
+                border-radius: 20px;
+            }
+
+            .baby-section {
+                padding: 20px 0;
+            }
+        }
+
+        /* RESPONSIVO - MÓVILES PEQUEÑOS (< 360px) */
+        @media (max-width: 360px) {
+            .splash-title {
+                font-size: 28px;
+            }
+
+            .header-title {
+                font-size: 30px;
+            }
+
+            .baby-name {
+                font-size: 28px;
+            }
+
+            .header-section {
+                padding: 30px 10px 45px;
+            }
+
+            .header-icons {
+                font-size: 28px;
+                gap: 10px;
+            }
+
+            .parents-names {
+                font-size: 15px;
+            }
+
+            .baby-icon {
+                font-size: 50px;
+            }
+
+            .countdown-value {
+                font-size: 18px;
+            }
+
+            .countdown-label {
+                font-size: 7px;
+            }
+
+            .countdown-item {
+                padding: 10px 4px;
+                min-width: 50px;
+            }
+
+            .detail-value {
+                font-size: 13px;
+            }
+
+            .parents-image {
+                max-width: 150px;
+            }
+
+            .baby-image {
+                max-width: 130px;
+            }
+
+            .whatsapp-btn {
+                font-size: 11px;
+                padding: 10px 12px;
+            }
+
+            .location-address {
+                font-size: 12px;
+            }
+
+            .invitation-content {
+                padding: 18px 10px;
+            }
+
+            .main-container {
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+        }
+
+        /* ANIMACIÓN DE ENTRADA GENERAL */
+        @keyframes fadeInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* BOTÓN DE MÚSICA FLOTANTE */
+        .music-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #87CEEB 0%, #5A9FB5 100%);
+            border: none;
+            cursor: pointer;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(135, 206, 235, 0.4);
+            transition: all 0.3s ease;
+            z-index: 500;
+            animation: slideInMusic 0.6s ease-out 3.5s both;
+        }
+
+        @keyframes slideInMusic {
+            from {
+                opacity: 0;
+                transform: scale(0) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .music-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(135, 206, 235, 0.6);
+        }
+
+        .music-button:active {
+            transform: scale(0.95);
+        }
+
+        .music-button.playing {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            animation: pulse-music 1.5s infinite;
+        }
+
+        @keyframes pulse-music {
+            0%, 100% {
+                box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(255, 215, 0, 0.7);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .music-button {
+                bottom: 20px;
+                right: 20px;
+                width: 52px;
+                height: 52px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- AUDIO DE FONDO -->
+    <audio id="bgMusic" loop preload="auto" muted>
+        <source src="https://susideasinvitaciones.com/demo-pooh/_assets/video/4cf1d3858a5955395fad9924ee3d69a5.mp4" type="audio/mp4">
+    </audio>
+
+    <!-- BOTÓN DE MÚSICA FLOTANTE -->
+    <button class="music-button" id="musicBtn" title="Reproducir música">🎵</button>
+
+    <!-- LOADER INICIAL -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-icon">🍼</div>
+            <p class="loader-text">Preparando sorpresa</p>
+            <p class="loader-dots">...</p>
+        </div>
+    </div>
+
+    <!-- PANTALLA DE APERTURA -->
+    <div class="splash-screen">
+        <div class="balloon balloon-1"></div>
+        <div class="balloon balloon-2"></div>
+        <div class="balloon balloon-3"></div>
+        <div class="balloon balloon-4"></div>
+        <div class="balloon balloon-5"></div>
+
+        <div class="splash-content">
+            <div class="splash-icons">
+                <span>🎈</span>
+                <span>👶</span>
+                <span>🎈</span>
+            </div>
+            <h1 class="splash-title">¡Estás Invitado!</h1>
+            <p class="splash-subtitle">al Baby Shower de</p>
+            <div class="splash-emoji">👼</div>
+        </div>
+    </div>
+
+    <!-- INVITACIÓN PRINCIPAL -->
+    <div class="invitation">
+        <!-- ENCABEZADO -->
+        <div class="header-section">
+            <div class="header-decorations">
+                <div class="deco-icon deco-1">🎈</div>
+                <div class="deco-icon deco-2">🍼</div>
+                <div class="deco-icon deco-3">🚼</div>
+            </div>
+            <div class="header-content">
+                <div class="header-icons">
+                    <span>🎈</span>
+                    <span>👶</span>
+                    <span>🎈</span>
+                </div>
+                <h1 class="header-title">Baby Shower</h1>
+                <p class="header-subtitle">Celebración Especial</p>
+            </div>
+        </div>
+
+        <!-- CONTENEDOR PRINCIPAL -->
+        <div class="main-container">
+            <div class="invitation-content">
+                <!-- MENSAJE ESPECIAL -->
+                <div class="special-message">
+                    <p>✨ <span>Acompáñanos a celebrar la llegada de nuestro pequeño príncipe</span> ✨</p>
+                </div>
+
+                <!-- SECCIÓN DE PADRES Y BEBÉ -->
+                <div class="baby-section">
+                    <p class="baby-label">Nos complace anunciar</p>
+                    <p class="parents-names">Milton & Johanna</p>
+                    <img src="papas.jpeg" alt="Papás" class="parents-image">
+                    <div class="baby-icon">👼</div>
+                    <div class="baby-name">Matías</div>
+                    <img src="bebe.jpeg" alt="Bebé" class="baby-image">
+                </div>
+
+                <!-- CONTADOR REGRESIVO -->
+                <div class="countdown-section">
+                    <p class="countdown-title">⏳ ¡Falta poco para celebrar!</p>
+                    <div class="countdown-container">
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="days">00</span>
+                            <span class="countdown-label">Días</span>
+                        </div>
+                        <div class="countdown-separator">:</div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="hours">00</span>
+                            <span class="countdown-label">Horas</span>
+                        </div>
+                        <div class="countdown-separator">:</div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="minutes">00</span>
+                            <span class="countdown-label">Minutos</span>
+                        </div>
+                        <div class="countdown-separator">:</div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="seconds">00</span>
+                            <span class="countdown-label">Segundos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DETALLES DEL EVENTO -->
+                <div class="event-details">
+                    <div class="detail-item">
+                        <div class="detail-icon">📅</div>
+                        <div class="detail-text">
+                            <p class="detail-label">Fecha</p>
+                            <p class="detail-value"><span class="highlight">1 de Agosto</span> de 2026</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">⏰</div>
+                        <div class="detail-text">
+                            <p class="detail-label">Hora</p>
+                            <p class="detail-value"><span class="highlight">3:00 p.m.</span></p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">📍</div>
+                        <div class="detail-text">
+                            <p class="detail-label">Ubicación</p>
+                            <p class="detail-value">Calle 4b # 34 a 85<br><strong>Mazzaro Apartamentos</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NOTA ESPECIAL -->
+                <div class="special-note">
+                    <p><span>🌧️</span> LLUVIA DE SOBRES <span>🌧️</span></p>
+                </div>
+
+                <!-- UBICACIÓN EN MAPA -->
+                <div class="location-card">
+                    <div class="location-content">
+                        <div class="location-icon">📍</div>
+                        <div class="location-info">
+                            <p class="location-label">Nos encuentras en</p>
+                            <p class="location-address">Cl. 4b # 34A-85<br>Puente Aranda, Bogotá<br>Cundinamarca, Colombia</p>
+                        </div>
+                    </div>
+                    <button class="map-button" onclick="openMaps()">
+                        <span>🗺️</span>
+                        <span>Ver en Google Maps</span>
+                    </button>
+                </div>
+
+                <!-- BOTONES WHATSAPP -->
+                <div class="button-container">
+                    <button class="whatsapp-btn" onclick="openWhatsApp('573045357168')">
+                        <span>👨‍👧</span>
+                        <span>Confirmar a Papá</span>
+                    </button>
+                    <button class="whatsapp-btn whatsapp-btn-mom" onclick="openWhatsApp('573057066326')">
+                        <span>👩‍👧</span>
+                        <span>Confirmar a Mamá</span>
+                    </button>
+                </div>
+
+                <!-- MENSAJE DE CIERRE -->
+                <div class="footer-message">
+                    <p>Tu presencia es nuestro mejor regalo <span class="footer-emoji">💝</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Gestión de música
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        let isPlaying = false;
+
+        // Función para reproducir música automáticamente
+        function autoPlayMusic() {
+            bgMusic.currentTime = 31;
+            bgMusic.muted = true;
+            const playPromise = bgMusic.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Desactivar muted después de que comience a reproducirse
+                    bgMusic.muted = false;
+                    isPlaying = true;
+                    musicBtn.classList.add('playing');
+                }).catch(error => {
+                    console.log('Error en reproducción');
+                    // Si falla, reproducir al primer clic
+                    document.addEventListener('click', () => {
+                        bgMusic.currentTime = 31;
+                        bgMusic.muted = false;
+                        bgMusic.play();
+                        isPlaying = true;
+                        musicBtn.classList.add('playing');
+                    }, { once: true });
+                });
+            }
+        }
+
+        // Función para pausar música
+        function pauseMusic() {
+            bgMusic.pause();
+            isPlaying = false;
+            musicBtn.classList.remove('playing');
+            musicBtn.title = 'Reproducir música';
+        }
+
+        // Click en botón de música (solo pausa, no reproduce)
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (isPlaying) {
+                pauseMusic();
+            }
+        });
+
+        // Aumentar duración de la pantalla de splash (transición lenta)
+        const splashScreen = document.querySelector('.splash-screen');
+        splashScreen.style.animation = 'fadeOutSplash 0.8s ease-out 7.5s forwards';
+
+        // Iniciar música automáticamente después de un breve tiempo
+        setTimeout(() => {
+            autoPlayMusic();
+        }, 1000);
+
+        // Función para actualizar el contador regresivo
+        function updateCountdown() {
+            const eventDate = new Date('August 1, 2026 15:00:00').getTime();
+            const now = new Date().getTime();
+            const difference = eventDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                const daysElement = document.getElementById('days');
+                const hoursElement = document.getElementById('hours');
+                const minutesElement = document.getElementById('minutes');
+                const secondsElement = document.getElementById('seconds');
+
+                const newDays = String(days).padStart(2, '0');
+                const newHours = String(hours).padStart(2, '0');
+                const newMinutes = String(minutes).padStart(2, '0');
+                const newSeconds = String(seconds).padStart(2, '0');
+
+                // Actualizar y animar días
+                if (daysElement.textContent !== newDays) {
+                    daysElement.classList.remove('pulse');
+                    void daysElement.offsetWidth;
+                    daysElement.classList.add('pulse');
+                    daysElement.textContent = newDays;
+                }
+
+                // Actualizar y animar horas
+                if (hoursElement.textContent !== newHours) {
+                    hoursElement.classList.remove('pulse');
+                    void hoursElement.offsetWidth;
+                    hoursElement.classList.add('pulse');
+                    hoursElement.textContent = newHours;
+                }
+
+                // Actualizar y animar minutos
+                if (minutesElement.textContent !== newMinutes) {
+                    minutesElement.classList.remove('pulse');
+                    void minutesElement.offsetWidth;
+                    minutesElement.classList.add('pulse');
+                    minutesElement.textContent = newMinutes;
+                }
+
+                // Actualizar y animar segundos (esto cambiará cada segundo)
+                if (secondsElement.textContent !== newSeconds) {
+                    secondsElement.classList.remove('pulse');
+                    void secondsElement.offsetWidth;
+                    secondsElement.classList.add('pulse');
+                    secondsElement.textContent = newSeconds;
+                }
+            } else {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+            }
+        }
+
+        // Mostrar invitación después de las pantallas de carga
+        window.addEventListener('load', () => {
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            setTimeout(() => {
+                const invitation = document.querySelector('.invitation');
+                invitation.classList.add('show');
+            }, 8300);
+        });
+
+        // Función para abrir WhatsApp
+        function openWhatsApp(phoneNumber) {
+            const message = 'Hola, quiero confirmar mi asistencia al Baby Shower de Matías el 1 de agosto a las 3:00 p.m.';
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Función para abrir Google Maps
+        function openMaps() {
+            window.open('https://maps.app.goo.gl/JBFGEub6gAaB5MUX8', '_blank');
+        }
+
+        // Agregar interactividad a los botones
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', function() {
+                this.style.transform = 'scale(0.97)';
+            });
+            btn.addEventListener('mouseup', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(run)",
+      "PowerShell(Start-Process $htmlFile)",
+      "PowerShell($htmlFile = \"C:\\\\Users\\\\milto\\\\OneDrive\\\\Documentos\\\\Dev\\\\InvitacionBabyShower\\\\index.html\")"
+    ]
+  }
+}
