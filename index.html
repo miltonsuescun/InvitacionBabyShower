@@ -4,6 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Baby Shower · Matías</title>
+
+<!-- Open Graph Meta Tags para Preview en Redes Sociales -->
+<meta property="og:title" content="Baby Shower de Matías">
+<meta property="og:description" content="¡Acompáñanos a celebrar la llegada de nuestro pequeño príncipe! Milton & Johanna te invitan a celebrar el Baby Shower de Matías. 1 de Agosto, 3:00 p.m.">
+<meta property="og:image" content="./papas.jpeg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Baby Shower Matías">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Baby Shower de Matías">
+<meta name="twitter:description" content="¡Acompáñanos a celebrar la llegada de nuestro pequeño príncipe! Milton & Johanna te invitan a celebrar el Baby Shower de Matías.">
+<meta name="twitter:image" content="./papas.jpeg">
+
+<!-- Favicon y otros metas -->
+<meta name="description" content="Invitación al Baby Shower de Matías. Celebra con nosotros la llegada de nuestro pequeño príncipe el 1 de agosto a las 3:00 p.m.">
+<meta name="theme-color" content="#87CEEB">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -256,6 +274,32 @@ body { margin:0; background:#24425F; font-family:'Poppins',sans-serif; color:#33
   box-shadow:0 4px 16px rgba(36,66,95,.3); transition:background .25s;
 }
 
+/* ── MODAL FOTOS ── */
+#photo-modal {
+  display: none;
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(0,0,0,.85);
+  align-items: center; justify-content: center;
+  padding: 20px;
+}
+#photo-modal.active { display: flex; }
+.photo-modal-content {
+  position: relative; max-width: 90vw; max-height: 90vh;
+  background: #fff; border-radius: 12px; overflow: hidden;
+}
+.photo-modal-content img {
+  width: 100%; height: 100%; object-fit: contain; display: block;
+}
+.photo-close {
+  position: absolute; top: 12px; right: 12px;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(0,0,0,.6); border: none; color: #fff; font-size: 24px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .25s;
+  z-index: 1;
+}
+.photo-close:hover { background: rgba(0,0,0,.9); }
+
 /* ── RESPONSIVE ── */
 @media (max-width:400px) {
   .hero { padding:44px 20px 54px; }
@@ -274,6 +318,14 @@ body { margin:0; background:#24425F; font-family:'Poppins',sans-serif; color:#33
 <audio id="audio" loop preload="auto">
   <source src="https://susideasinvitaciones.com/demo-pooh/_assets/video/4cf1d3858a5955395fad9924ee3d69a5.mp4" type="audio/mp4">
 </audio>
+
+<!-- Modal de fotos -->
+<div id="photo-modal">
+  <div class="photo-modal-content">
+    <button class="photo-close" onclick="closePhotoModal()">✕</button>
+    <img id="modal-photo" src="" alt="Foto">
+  </div>
+</div>
 
 <button id="music-btn" aria-label="Música">♪</button>
 
@@ -360,12 +412,12 @@ body { margin:0; background:#24425F; font-family:'Poppins',sans-serif; color:#33
   <!-- FOTOS -->
   <div class="sec" style="padding-top:36px;">
     <div class="photo-row">
-      <div class="photo-card photo-a">
-        <img src="./papas.jpeg" alt="Mi Familia" onerror="this.style.display='none'">
-        <div class="photo-cap">Mi Familia</div>
+      <div class="photo-card photo-a" onclick="openPhotoModal('./papas.jpeg')">
+        <img src="./papas.jpeg" alt="Mis papis" onerror="this.style.display='none'" style="cursor:pointer;">
+        <div class="photo-cap">Mis papis</div>
       </div>
-      <div class="photo-card photo-b">
-        <img src="./bebe.jpeg" alt="Matías" onerror="this.style.display='none'">
+      <div class="photo-card photo-b" onclick="openPhotoModal('./bebe.jpeg')">
+        <img src="./bebe.jpeg" alt="Matías" onerror="this.style.display='none'" style="cursor:pointer;">
         <div class="photo-cap">Matías</div>
       </div>
     </div>
@@ -557,6 +609,8 @@ function goToPhase(next) {
       // Iniciar countdown aislado
       startCountdown();
       updateRsvp();
+      // INICIAR MÚSICA CUANDO LLEGA A INVITACIÓN PRINCIPAL
+      setTimeout(() => playAudio(), 500);
     }
 
     /* 4. Fade-in del nuevo estado */
@@ -621,6 +675,31 @@ function updateRsvp() {
 }
 
 /* ═══════════════════════════════════════
+   MODAL DE FOTOS
+═══════════════════════════════════════ */
+function openPhotoModal(src) {
+  const modal = document.getElementById('photo-modal');
+  const img = document.getElementById('modal-photo');
+  img.src = src;
+  modal.classList.add('active');
+}
+
+function closePhotoModal() {
+  const modal = document.getElementById('photo-modal');
+  modal.classList.remove('active');
+}
+
+// Cerrar modal al hacer click fuera de la imagen
+document.getElementById('photo-modal').addEventListener('click', (e) => {
+  if (e.target.id === 'photo-modal') closePhotoModal();
+});
+
+// Cerrar modal con ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closePhotoModal();
+});
+
+/* ═══════════════════════════════════════
    MÚSICA — toggle play/pause
 ═══════════════════════════════════════ */
 const audio    = document.getElementById('audio');
@@ -630,11 +709,16 @@ let playing = false;
 function playAudio() {
   audio.currentTime = 31;
   audio.muted = true;
-  audio.play().then(() => {
-    audio.muted = false;
-    playing = true;
-    musicBtn.textContent = '❚❚';
-  }).catch(() => {});
+  const playPromise = audio.play();
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
+      audio.muted = false;
+      playing = true;
+      musicBtn.textContent = '❚❚';
+    }).catch(err => {
+      console.log('Autoplay bloqueado:', err);
+    });
+  }
 }
 
 musicBtn.addEventListener('click', () => {
@@ -647,7 +731,8 @@ musicBtn.addEventListener('click', () => {
   }
 });
 
-window.addEventListener('load', () => setTimeout(playAudio, 800));
+// Guardamos el playAudio global para que se pueda llamar cuando llegue a main
+window.playAudio = playAudio;
 </script>
 </body>
 </html>
