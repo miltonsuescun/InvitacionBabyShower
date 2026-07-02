@@ -281,14 +281,27 @@ body { margin:0; background:#24425F; font-family:'Poppins',sans-serif; color:#33
   background: rgba(0,0,0,.85);
   align-items: center; justify-content: center;
   padding: 20px;
+  overflow: auto;
 }
 #photo-modal.active { display: flex; }
 .photo-modal-content {
-  position: relative; max-width: 90vw; max-height: 90vh;
-  background: #fff; border-radius: 12px; overflow: hidden;
+  position: relative;
+  background: transparent;
+  border-radius: 12px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 95vw;
+  max-height: 90vh;
 }
 .photo-modal-content img {
-  width: 100%; height: 100%; object-fit: contain; display: block;
+  width: auto;
+  height: auto;
+  max-width: 95vw;
+  max-height: 85vh;
+  display: block;
+  border-radius: 12px;
 }
 .photo-close {
   position: absolute; top: 12px; right: 12px;
