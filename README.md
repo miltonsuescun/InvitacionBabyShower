@@ -38,10 +38,10 @@ InvitacionBabyShower/
 ## 🎯 Evento
 
 - **Bebé:** Matías
-- **Papás:** Milton & Johanna
+- **Papás:** Milton & Jhoanna
 - **Fecha:** Sábado, 1 de Agosto de 2026
 - **Hora:** 3:00 p.m.
-- **Ubicación:** Mazzaro Apartamentos, Cl. 4b # 34A-85, Puente Aranda, Bogotá
+- **Ubicación:** Mazzaro Apartamentos - Salón 4, Cl. 4b # 34A-85, Puente Aranda, Bogotá
 - **Límite confirmación:** Sábado, 25 de Julio
 
 ## 🚀 Uso
@@ -58,7 +58,7 @@ https://miltonsuescun.github.io/InvitacionBabyShower/
 ## 📞 Contacto
 
 - **Papi (Milton):** +57 304 5357168
-- **Mami (Johanna):** +57 305 7066326
+- **Mami (Jhoanna):** +57 305 7066326
 
 ## 🛠️ Tecnologías
 
@@ -97,4 +97,4 @@ Creado con ❤️ para la llegada de Matías
 
 ---
 
-**Última actualización:** 2026-07-02
+**Última actualización:** 2026-07-02 - Versión final con correcciones de copy y coherencia
