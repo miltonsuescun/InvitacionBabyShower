@@ -162,12 +162,19 @@ function startCountdown() {
 /* ═══════════════════════════════════════
    RSVP BADGE — componente aislado
 ═══════════════════════════════════════ */
-const RSVP_MS = new Date('2026-07-25T23:59:59-05:00').getTime();
+const RSVP_MS = new Date('2026-07-18T23:59:59-05:00').getTime();
 
 function updateRsvp() {
   const diff = Math.max(0, RSVP_MS - Date.now());
   const days = Math.floor(diff / 86400000);
-  document.getElementById('rsvp-days').textContent = days > 0 ? days : '¡Hoy!';
+  const rsvpEl = document.getElementById('rsvp-days');
+  if (days > 0) {
+    rsvpEl.textContent = days;
+  } else if (days === 0) {
+    rsvpEl.textContent = '¡Hoy!';
+  } else {
+    rsvpEl.textContent = '0';
+  }
 }
 
 /* ═══════════════════════════════════════

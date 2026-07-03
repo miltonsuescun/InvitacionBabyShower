@@ -198,9 +198,9 @@ body { margin:0; background:#24425F; font-family:'Poppins',sans-serif; color:#33
 .card-rsvp { background:rgba(36,66,95,.05); border:1px solid rgba(36,66,95,.12); border-radius:12px; padding:18px 20px; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
 .rsvp-lbl-t { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#24425F; margin-bottom:6px; }
 .rsvp-date  { font-size:16px; font-weight:600; color:#24425F; }
-.rsvp-badge { text-align:center; background:#24425F; border-radius:10px; padding:8px 14px; flex-shrink:0; min-width:70px; }
-.rsvp-num   { font-weight:800; font-size:22px; color:#C89860; line-height:1; }
-.rsvp-unit  { font-size:8px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#DCE9F2; margin-top:2px; }
+.rsvp-badge { text-align:center; background:#24425F; border-radius:10px; padding:8px 12px; flex-shrink:0; min-width:80px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.rsvp-num   { font-weight:800; font-size:28px; color:#C89860; line-height:1; margin:4px 0; }
+.rsvp-unit  { font-size:9px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; color:#DCE9F2; line-height:1.2; }
 
 /* ── BOTONES ── */
 .btn-map {
