@@ -111,7 +111,6 @@ function goToPhase(next) {
       if (!hWrap.childElementCount)
         HERO_BALLOONS.forEach(b => hWrap.appendChild(makeBalloon(b, .30)));
       startCountdown();
-      updateRsvp();
       setTimeout(() => playAudio(), 500);
     }
 
@@ -157,24 +156,6 @@ function startCountdown() {
   }
   tick();
   setInterval(tick, 1000);
-}
-
-/* ═══════════════════════════════════════
-   RSVP BADGE — componente aislado
-═══════════════════════════════════════ */
-const RSVP_MS = new Date('2026-07-18T23:59:59-05:00').getTime();
-
-function updateRsvp() {
-  const diff = Math.max(0, RSVP_MS - Date.now());
-  const days = Math.floor(diff / 86400000);
-  const rsvpEl = document.getElementById('rsvp-days');
-  if (days > 0) {
-    rsvpEl.textContent = days;
-  } else if (days === 0) {
-    rsvpEl.textContent = '¡Hoy!';
-  } else {
-    rsvpEl.textContent = '0';
-  }
 }
 
 /* ═══════════════════════════════════════
